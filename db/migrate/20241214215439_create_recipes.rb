@@ -5,7 +5,7 @@ class CreateRecipes < ActiveRecord::Migration[8.0]
       t.integer :cook_time
       t.integer :prep_time
       t.string :ingredients, array: true
-      t.decimal :ratings, precision: 1, scale: 2
+      t.decimal :ratings, precision: 4, scale: 2
       t.string :cuisine
       t.string :category
       t.string :author
