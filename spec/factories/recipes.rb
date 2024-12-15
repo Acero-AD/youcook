@@ -9,5 +9,6 @@ FactoryBot.define do
     category { "italian" }
     author { "diego" }
     image { "incredible.jpg" }
+    keywords { [ "apples", "oranges", "pears" ] }
   end
 end
