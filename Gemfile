@@ -3,18 +3,17 @@ source "https://rubygems.org"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.0.1"
 
-gem 'dotenv-rails', '~> 3.1', '>= 3.1.6'
+gem "dotenv-rails", "~> 3.1", ">= 3.1.6"
 
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
 
-gem "pg", '~> 1.5', '>= 1.5.9'
+gem "pg", "~> 1.5", ">= 1.5.9"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
 
-gem 'hotwire-rails', '~> 0.1.3'
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
@@ -23,15 +22,17 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
-gem 'factory_bot_rails', '~> 6.4', '>= 6.4.4'
-gem 'active_model_serializers', '~> 0.10.15'
-gem 'memoit', '~> 0.4.1'
-gem 'rspec-rails', '~> 7.0.0'
+gem "factory_bot_rails", "~> 6.4", ">= 6.4.4"
+gem "active_model_serializers", "~> 0.10.15"
+gem "memoit", "~> 0.4.1"
+gem "rspec-rails", "~> 7.0.0"
 gem "rubocop", require: false
 gem "rubocop-factory_bot", require: false
 gem "rubocop-performance", require: false
 gem "rubocop-rails", require: false
 gem "rubocop-rspec", require: false
+gem "kaminari", "~> 1.2"
+gem "tailwindcss-rails", "~> 2.0"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
