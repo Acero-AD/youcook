@@ -1,13 +1,31 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/*
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 @layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
+  .pagination {
+    @apply flex justify-center items-center space-x-2 my-8;
+  }
+
+  .pagination .page-item {
+    @apply px-4 py-2 rounded-full bg-white text-stone-700 hover:bg-olive-600 hover:text-white transition-colors duration-300;
+  }
+
+  .pagination .page-item.current {
+    @apply bg-olive-600 text-white;
+  }
+
+  .pagination .page-item.disabled {
+    @apply bg-stone-200 text-stone-400 cursor-not-allowed hover:bg-stone-200 hover:text-stone-400;
+  }
+
+  .pagination .gap {
+    @apply px-3 py-1 text-stone-700;
   }
 }
 
-*/
+@layer utilities {
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  }
+}

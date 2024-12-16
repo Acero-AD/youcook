@@ -1,2 +1,27 @@
-<h1>Recipes#index</h1>
-<p>Find me in app/views/recipes/index.html.erb</p>
+<div class="relative">
+  <div class="absolute inset-0 bg-white bg-opacity-70 backdrop-filter backdrop-blur-sm rounded-3xl shadow-lg z-0"></div>
+  <div class="relative z-10 p-8">
+    <h1 class="text-5xl font-extrabold text-center mb-8 text-stone-800">
+      YouCook
+    </h1>
+    
+    <div class="mb-8">
+      <%= form_with(url: recipes_path, method: :get, data: { controller: "recipes", action: "input->recipes#search" }, class: "flex items-center") do |f| %>
+        <%= f.text_field :search, placeholder: "Discover delicious recipes...", class: "w-full p-4 border-2 border-stone-300 rounded-l-full focus:outline-none focus:ring-2 focus:ring-olive-500 focus:border-transparent" %>
+        <%= f.button type: "submit", class: "bg-stone-200 text-black px-6 py-4 rounded-r-full hover:bg-stone-300 focus:outline-none" do %>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div id="recipes-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <%= render partial: 'recipe', collection: @recipes %>
+    </div>
+
+    <div class="mt-12">
+      <%= paginate @recipes %>
+    </div>
+  </div>
+</div>
