@@ -4,11 +4,10 @@ FactoryBot.define do
     cook_time { 1 }
     prep_time { 1 }
     ingredients { %w[apples oranges pears] }
-    ratings { "9.99" }
+    ratings { "4.5" }
     cuisine { "cooker" }
     category { "italian" }
     author { "diego" }
     image { "incredible.jpg" }
-    keywords { [ "apples", "oranges", "pears" ] }
   end
 end
