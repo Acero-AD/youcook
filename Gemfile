@@ -25,7 +25,7 @@ gem "jbuilder"
 gem "factory_bot_rails", "~> 6.4", ">= 6.4.4"
 gem "active_model_serializers", "~> 0.10.15"
 gem "memoit", "~> 0.4.1"
-gem "rspec-rails", "~> 7.0.0"
+gem "rspec-rails", "~> 7.1.0"
 gem "rubocop", require: false
 gem "rubocop-factory_bot", require: false
 gem "rubocop-performance", require: false
