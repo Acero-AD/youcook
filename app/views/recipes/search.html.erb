@@ -2,11 +2,11 @@
   <div class="absolute inset-0 bg-white bg-opacity-70 backdrop-filter backdrop-blur-sm rounded-3xl shadow-lg z-0"></div>
   <div class="relative z-10 p-8">
     <h1 class="text-5xl font-extrabold text-center mb-8 text-stone-800">
-      YouCook
+      <%= link_to "YouCook", root_path %>
     </h1>
     
     <div class="mb-8">
-      <%= form_with(url: search_recipes_path, method: :get, data: { controller: "recipes", action: "input->recipes#search" }, class: "flex items-center") do |f| %>
+      <%= form_with(url: search_recipes_path, method: :get, data: { controller: "recipes", action: "input->recipes#search", turbo_frame: "recipes-results" }, class: "flex items-center") do |f| %>
         <%= f.text_field :keywords, placeholder: "Discover delicious recipes...", class: "w-full p-4 border-2 border-stone-300 rounded-l-full focus:outline-none focus:ring-2 focus:ring-olive-500 focus:border-transparent" %>
         <%= f.button type: "submit", class: "bg-stone-200 text-black px-6 py-4 rounded-r-full hover:bg-stone-300 focus:outline-none" do %>
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -16,12 +16,20 @@
       <% end %>
     </div>
 
-    <div id="recipes-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <%= render partial: 'recipe', collection: @recipes %>
-    </div>
+    <% if @recipes.empty? %>
+      <div class="text-center text-stone-600 text-xl">
+        Start searching for the perfect recipe!
+      </div>
+    <% end %>
 
-    <div class="mt-12">
-      <%= paginate @recipes %>
-    </div>
+    <%= turbo_frame_tag "recipes-results" do %>
+      <div id="recipes-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <%= render partial: 'recipe', collection: @recipes %>
+      </div>
+
+      <div class="mt-12">
+        <%= paginate @recipes %>
+      </div>
+    <% end %>
   </div>
 </div>

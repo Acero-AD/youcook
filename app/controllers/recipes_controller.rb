@@ -11,6 +11,11 @@ class RecipesController < ApplicationController
     @recipes = Recipes::SearchRecipesByKeywordQuery.new(
       keywords:, page: params[:page]
     ).call
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   private
