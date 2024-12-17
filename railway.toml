@@ -1,0 +1,12 @@
+[build]
+builder = "nixpacks"
+buildCommand = "bin/rails assets:precompile"
+
+[deploy]
+startCommand = "bin/rails server"
+healthcheckPath = "/"
+healthcheckTimeout = 100
+restartPolicyType = "on-failure"
+
+[variables]
+RAILS_ENV = "production"

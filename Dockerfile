@@ -49,12 +49,10 @@ RUN bundle exec bootsnap precompile app/ lib/
 RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
 
-
-
 # Final stage for app image
 FROM base
 
-# Copy built artifacts: gems, application
+# Copy built artifacts
 COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
 COPY --from=build /rails /rails
 
@@ -67,6 +65,6 @@ USER 1000:1000
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
-# Start server via Thruster by default, this can be overwritten at runtime
-EXPOSE 80
-CMD ["./bin/thrust", "./bin/rails", "server"]
+# Start server
+EXPOSE $PORT
+CMD ["./bin/rails", "server", "-b", "0.0.0.0", "-p", "$PORT"]
