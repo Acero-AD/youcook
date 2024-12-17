@@ -1,9 +1,7 @@
 <div class="relative">
   <div class="absolute inset-0 bg-white bg-opacity-70 backdrop-filter backdrop-blur-sm rounded-3xl shadow-lg z-0"></div>
   <div class="relative z-10 p-8">
-    <h1 class="text-5xl font-extrabold text-center mb-8 text-stone-800">
-      <%= link_to "YouCook", root_path %>
-    </h1>
+    <%= render partial: 'header' %>
     
     <div class="mb-8">
       <%= form_with(url: search_recipes_path, method: :get, data: { controller: "recipes", action: "input->recipes#search", turbo_frame: "recipes-results" }, class: "flex items-center") do |f| %>
@@ -19,6 +17,10 @@
     <% if @recipes.empty? %>
       <div class="text-center text-stone-600 text-xl">
         Start searching for the perfect recipe!
+        <br>
+        or
+        <br>
+        <%= link_to "Browse all recipes", recipes_path, class: "text-olive-600 hover:underline" %>
       </div>
     <% end %>
 

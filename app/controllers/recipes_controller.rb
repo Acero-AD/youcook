@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   def index
-    @recipes = Recipe.order(title: :desc).page(params[:page] || 1)
+    @recipes = Recipe.order(title: :asc).page(params[:page] || 1)
   end
 
   def show
