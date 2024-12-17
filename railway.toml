@@ -6,7 +6,7 @@ buildCommand = "bin/rails assets:precompile"
 startCommand = "bin/rails server"
 healthcheckPath = "/"
 healthcheckTimeout = 100
-restartPolicyType = "on-failure"
+restartPolicyType = "ON_FAILURE"
 
 [variables]
 RAILS_ENV = "production"
