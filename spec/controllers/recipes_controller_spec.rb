@@ -1,14 +1,15 @@
 require "rails_helper"
 
 RSpec.describe RecipesController, type: :controller do
-  let(:recipes_amount) { Recipe.default_per_page + second_page_recipes_amount }
-  let(:second_page_recipes_amount) { 5 }
-  before do
-    (1..recipes_amount).each do |i|
-      create(:recipe, title: "title_#{i}")
-    end
-  end
   describe "GET #index" do
+    let(:recipes_amount) { Recipe.default_per_page + second_page_recipes_amount }
+    let(:second_page_recipes_amount) { 5 }
+    before do
+      (1..recipes_amount).each do |i|
+        create(:recipe, title: "title_#{i}")
+      end
+    end
+
     it "returns http success" do
       get :index
       expect(response).to have_http_status(:success)
@@ -26,24 +27,44 @@ RSpec.describe RecipesController, type: :controller do
       expect(recipes.count).to eq(5)
     end
   end
+
   describe "GET #show" do
+    let!(:recipe_1) { create(:recipe, title: "apples", ingredients: %w[apples pears]) }
+
     it "returns http success" do
-      get :show, params: { id: 1 }
+      get :show, params: { id: recipe_1.id }
       expect(response).to have_http_status(:success)
+    end
+
+    it "returns the correct recipe" do
+      get :show, params: { id: recipe_1.id }
+      recipe = controller.view_assigns['recipe']
+      expect(recipe.title).to eq(recipe_1.title)
+      expect(recipe.ingredients).to eq(recipe_1.ingredients)
+      expect(recipe.ratings).to eq(recipe_1.ratings)
     end
   end
-  describe "GET #new" do
+
+  describe "GET #search" do
+    let!(:recipe_1) { create(:recipe, title: "apples", ingredients: %w[apples pears]) }
+    let!(:recipe_2) { create(:recipe, title: "pears", ingredients: %w[pears oranges]) }
+    let!(:recipe_3) { create(:recipe, title: "oranges", ingredients: %w[oranges apples]) }
+
     it "returns http success" do
-      get :new
+      get :search, params: { ingredients: [ "apples" ] }
       expect(response).to have_http_status(:success)
     end
-   end
 
-   describe "POST #create" do
-     let(:recipe) { attributes_for(:recipe) }
-     it "returns http success" do
-       post :create, params: { recipe: recipe }
-       expect(response).to have_http_status(:success)
-     end
-   end
+    it "returns the correct number of recipes" do
+      get :search, params: { ingredients: [ "apples" ] }
+      recipes = controller.view_assigns['recipes']
+      expect(recipes.count).to eq(2)
+    end
+
+    it "returns the correct number of recipes" do
+      get :search, params: { ingredients: [] }
+      recipes = controller.view_assigns['recipes']
+      expect(recipes).to be_empty
+    end
+  end
 end

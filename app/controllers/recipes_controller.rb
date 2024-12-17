@@ -1,15 +1,15 @@
 class RecipesController < ApplicationController
   def index
-    @recipes = Recipe.page(params[:page] || 1).per(9)
+    @recipes = Recipe.order(title: :desc).page(params[:page] || 1)
   end
 
   def show
-    @recipes = Recipe.find(params[:id])
+    @recipe = Recipe.find(params[:id])
   end
 
-  def edit
-  end
-
-  def update
+  def search
+    @recipes = Recipes::SearchRecipesByKeywordQuery.new(
+      keywords: params[:ingredients], page: params[:page]
+    ).call
   end
 end
