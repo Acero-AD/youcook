@@ -51,30 +51,30 @@ RSpec.describe RecipesController, type: :controller do
     let!(:recipe_3) { create(:recipe, title: "oranges", ingredients: %w[oranges apples]) }
 
     it "returns http success" do
-      get :search, params: { ingredients: "apples" }
+      get :search, params: { keywords: "apples" }
       expect(response).to have_http_status(:success)
     end
 
     it "returns the correct number of recipes" do
-      get :search, params: { ingredients: "apples" }
+      get :search, params: { keywords: "apples" }
       recipes = controller.view_assigns['recipes']
       expect(recipes.count).to eq(2)
     end
 
-    it "returns empty array if no ingredients sent" do
+    it "returns empty array if no keywords sent" do
       get :search
       recipes = controller.view_assigns['recipes']
       expect(recipes).to be_empty
     end
 
-    it "returns empty recipes if no recipe match ingredients " do
-      get :search, params: { ingredients: "none" }
+    it "returns empty recipes if no recipe match keywords " do
+      get :search, params: { keywords: "none" }
       recipes = controller.view_assigns['recipes']
       expect(recipes).to be_empty
     end
 
-    it "only returns recipes with all matching ingredients" do
-      get :search, params: { ingredients: "apples oil" }
+    it "only returns recipes with all matching keywords" do
+      get :search, params: { keywords: "apples oil" }
       recipes = controller.view_assigns['recipes']
       expect(recipes.count).to eq(1)
     end
