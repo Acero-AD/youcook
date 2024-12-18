@@ -3,7 +3,7 @@ builder = "nixpacks"
 buildCommand = "bin/rails assets:precompile"
 
 [deploy]
-startCommand = "bin/rails db:migrate && bin/rails db:seed && bin/rails server -b 0.0.0.0"
+startCommand = "bin/rails db:prepare && bin/rails server -p $PORT -b 0.0.0.0"
 healthcheckPath = "/up"
 healthcheckTimeout = 100
 restartPolicyType = "ON_FAILURE"

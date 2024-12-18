@@ -65,10 +65,3 @@ RUN mkdir -p db log storage tmp && \
     useradd rails --uid 1000 --gid 1000 --create-home --shell /bin/bash && \
     chown -R rails:rails db log storage tmp
 USER 1000:1000
-
-# Entrypoint prepares the database.
-ENTRYPOINT ["/rails/bin/docker-entrypoint"]
-
-# Start server
-EXPOSE $PORT
-CMD ["./bin/rails", "server", "-b", "0.0.0.0", "-p", "$PORT"]
