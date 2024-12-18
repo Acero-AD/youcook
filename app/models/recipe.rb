@@ -6,6 +6,13 @@ class Recipe < ApplicationRecord
 
   scope :with_keywords, ->(search_values) { where("keywords @> ARRAY[?]::varchar[]", search_values) }
 
+  def display_image
+    return image unless image.include?("imagesvc.meredithcorp.io")
+
+    uri = URI(image)
+    params = URI.decode_www_form(uri.query).to_h
+    params["url"]
+  end
   private
 
   def extract_keywords
