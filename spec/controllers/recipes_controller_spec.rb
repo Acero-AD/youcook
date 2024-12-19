@@ -61,10 +61,10 @@ RSpec.describe RecipesController, type: :controller do
       expect(recipes.count).to eq(2)
     end
 
-    it "returns empty array if no keywords sent" do
-      get :search
+    it "returns page if no keywords sent" do
+      get :search, params: { keywords: "" }
       recipes = controller.view_assigns['recipes']
-      expect(recipes).to be_empty
+      expect(recipes.count).to eq(3)
     end
 
     it "returns empty recipes if no recipe match keywords " do

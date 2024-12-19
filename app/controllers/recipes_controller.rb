@@ -9,7 +9,7 @@ class RecipesController < ApplicationController
 
   def search
     @recipes = Recipes::SearchRecipesByKeywordQuery.new(
-      keywords:, page: params[:page]
+      keywords: params[:keywords], page: params[:page]
     ).call
 
     respond_to do |format|
@@ -34,11 +34,6 @@ class RecipesController < ApplicationController
   end
 
   private
-
-  def keywords
-    return [] if params[:keywords].blank?
-    params[:keywords].split(/[\s,]+/).map(&:downcase)
-  end
 
   def recipe_params
     params.require(:recipe)
