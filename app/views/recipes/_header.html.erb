@@ -1,3 +1,24 @@
 <h1 class="text-5xl font-extrabold text-center mb-8 text-stone-800">
       <%= link_to "YouCook", root_path %>
 </h1>
+
+<nav class="flex items-center justify-center space-x-2 mb-8">
+      <%= link_to "#", class: "flex items-center px-3 py-2 text-sm font-medium text-white bg-stone-600 rounded-md hover:bg-stone-700 transition-colors duration-300", title: "Search Recipes" do %>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+      Search
+      <% end %>
+      <%= link_to new_recipe_path, class: "flex items-center px-3 py-2 text-sm font-medium text-white bg-green-600 rounded-md hover:bg-green-700 transition-colors duration-300", title: "New Recipe" do %>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+      </svg>
+      New
+      <% end %>
+      <%= link_to recipes_path, class: "flex items-center px-3 py-2 text-sm font-medium text-white bg-stone-600 rounded-md hover:bg-stone-700 transition-colors duration-300", title: "All Recipes" do %>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+      </svg>
+      All Recipes
+      <% end %>
+</nav>
