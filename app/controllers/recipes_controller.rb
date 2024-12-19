@@ -18,10 +18,40 @@ class RecipesController < ApplicationController
     end
   end
 
+  def new
+    @recipe = Recipe.new
+  end
+
+  def create
+    response = CreateRecipeCommand.new(recipe_params.to_h).call
+    if response[:success]
+      redirect_to recipe_path(response[:recipe])
+    else
+      @recipe = response[:recipe]
+      @errors = response[:errors]
+      render :new, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def keywords
     return [] if params[:keywords].blank?
     params[:keywords].split(/[\s,]+/).map(&:downcase)
+  end
+
+  def recipe_params
+    params.require(:recipe)
+    .permit(
+      :title,
+      :prep_time,
+      :ratings,
+      :image,
+      :cook_time,
+      :author,
+      :cuisine,
+      :category,
+      ingredients: []
+    )
   end
 end

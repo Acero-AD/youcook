@@ -79,4 +79,44 @@ RSpec.describe RecipesController, type: :controller do
       expect(recipes.count).to eq(1)
     end
   end
+
+  describe "POST #create" do
+    let(:recipe_params) do
+      {
+        title: "apples",
+        ingredients: %w[apples pears],
+        ratings: 5,
+        prep_time: 10,
+        cook_time: 20,
+        author: "John Doe",
+        cuisine: "Italian",
+        category: "mains"
+      }
+    end
+
+    it "returns http success" do
+      post :create, params: { recipe: recipe_params }
+      expect(response).to have_http_status(:found)
+    end
+
+    it "returns the correct recipe" do
+      post :create, params: { recipe: recipe_params }
+      recipe = Recipe.last
+      expect(recipe.title).to eq(recipe_params[:title])
+      expect(recipe.ingredients).to eq(recipe_params[:ingredients])
+      expect(recipe.ratings).to eq(recipe_params[:ratings])
+      expect(recipe.prep_time).to eq(recipe_params[:prep_time])
+      expect(recipe.cook_time).to eq(recipe_params[:cook_time])
+      expect(recipe.author).to eq(recipe_params[:author])
+      expect(recipe.cuisine).to eq(recipe_params[:cuisine])
+      expect(recipe.category).to eq(recipe_params[:category])
+    end
+
+    it "returns errors if recipe is invalid" do
+      post :create, params: { recipe: { title: "" } }
+      expect(response).to have_http_status(:unprocessable_entity)
+      expect(controller.view_assigns['recipe']).to be_nil
+      expect(controller.view_assigns['errors']).to be_present
+    end
+  end
 end
