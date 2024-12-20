@@ -64,7 +64,6 @@ CREATE TABLE public.recipes (
     image character varying,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    keywords character varying[] NOT NULL,
     ingredients_vector tsvector
 );
 
@@ -129,13 +128,6 @@ ALTER TABLE ONLY public.schema_migrations
 
 
 --
--- Name: index_recipes_on_keywords; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_recipes_on_keywords ON public.recipes USING gin (keywords);
-
-
---
 -- Name: recipes_ingredients_vector_idx; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -156,6 +148,7 @@ CREATE TRIGGER tsvectorupdate BEFORE INSERT OR UPDATE ON public.recipes FOR EACH
 SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
+('20241220074130'),
 ('20241219140442'),
 ('20241215210324'),
 ('20241215205423'),
