@@ -52,14 +52,18 @@ For improving it I made some research and though about using ElasticSearch but e
 
 I think it ended up being a better solution that has less friction for the user.
 
+### Leftouts
+
+* Update and edit recipes. Same process as create so I gave 0 value.
+* Users login. For allowing creating I would be interesting so not everyone freely do it.
+
+
 ## AI
 For the project I have used some AI.
 
 * Supermaven: As a copilot
 * V0: Design and frontend help
 * ChatGPT: for general questions and discussions about different approaches.
-
-
 
 ## User Stories
 
