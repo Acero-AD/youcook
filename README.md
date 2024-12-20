@@ -27,11 +27,11 @@ The aplication keeps the rails convention but adds the Command Query layers.
 The reason for this is because allthough for simple cases, like this, calling the logic from the controller is enough I prefer to keep the separation of concerns.
 
 #### Testing
-For testing normally I prefer a unit test approach were the UNIT is a behavior instead a class alone.
+For testing normally I prefer a unit test approach where the UNIT is a behavior instead a class alone.
 
 This is because when taking behavior as the unit of testing you decople tests from code structure allowing for easier refactoring and maintenance.
 
-For this application I have mixed a bit because I testing the behavior starting from the controller. I have done it this way because the amount of tests is small and the size of the application allowed it.
+For this application I have mixed a bit because testing the behavior starting from the controller and finishing in the DB tests fully tests the paths. I have done it this way because the amount of tests is small and the size of the application allowed it.
 
 #### Frontend
 
@@ -48,14 +48,14 @@ I tried to make make it not very ugly with my lack of design skills.
 #### Searching Recipes
 For searching the recipe I started with a simple keyword search. It was a good starting point but it was messy and it didn't take into account plurals and combinations.
 
-For improving it I made some research and though about using ElasticSearch but endep up using Postgres full text search (I learn about it during this project).
+For improving it I made some research and though about using ElasticSearch but end up using Postgres full text search (I learn about it during this project).
 
 I think it ended up being a better solution that has less friction for the user.
 
 ### Leftouts
 
-* Update and edit recipes. Same process as create so I gave 0 value.
-* Users login. For allowing creating I would be interesting so not everyone freely do it.
+* Update and edit recipes. Same process as create so it gave 0 value.
+* Users login. For allowing creating it would be interesting so not everyone can freely do it.
 
 
 ## AI
